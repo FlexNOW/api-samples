@@ -1,4 +1,12 @@
 import sys
+import datetime
+
+def format_from_iso_time(iso_timestamp):
+    try:
+        dt = datetime.datetime.fromisoformat(iso_timestamp.replace('Z', ''))
+        return dt.strftime('%Y%m%d%H%M%S%f')[:-3]  
+    except:
+        return None
 
 def format_oats(street_order, parent_order, config):
     """
@@ -26,13 +34,13 @@ def format_oats(street_order, parent_order, config):
         "",
         "",
         "BROC",
-        parent_order.load_time,
-        parent_order.client_order_id,
+        format_from_iso_time(parent_order.load_time),
+        parent_order.compliance_id,
         broker_mpid,
         street_order.id,
         street_order.symbol,
-        street_order.load_time,
-        street_order.size,
+        format_from_iso_time(street_order.load_time),
+        int(street_order.size),
         "E",
         "",
         "",

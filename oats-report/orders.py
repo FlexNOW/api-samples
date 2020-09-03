@@ -24,6 +24,10 @@ class ParentOrder:
         except:
             self.client_order_id = None
         try:
+            self.compliance_id = order_info[0].get("complianceId")
+        except:
+            self.compliance_id = None
+        try:
             self.load_time = order_info[0].get("orderLoadTime")
         except:
             self.load_time = None
