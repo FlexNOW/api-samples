@@ -4,7 +4,7 @@ This sample project will connect to the FlexNOW API and generate an OATS report.
 
 ### Setup
 
-Python 3 is required (`python3 --version` should display the version).
+Python 3.7 is required (`python3 --version` should display the version).
 
 In the root of the project, install the requirements:
 
