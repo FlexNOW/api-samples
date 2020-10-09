@@ -1,3 +1,0 @@
-export FLEXNOW_API_CLIENT_ID=""
-export FLEXNOW_API_SECRET_TOKEN=""
-export FLEXNOW_API_BASE_URL="https://flexnow-uat.eu.flextrade.com/api/v3"

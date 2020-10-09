@@ -1,15 +1,6 @@
-import configparser
 import os
 import sys
 
-def load_config(filename):
-    """Reads in .INI style configuration file."""
-    config_file_name = filename
-    config = configparser.ConfigParser()
-    config.read(config_file_name)
-
-    return config
-    
 def get_api_config():
     """
     Reads in API configuration.

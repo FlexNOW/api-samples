@@ -33,6 +33,10 @@ $ ./create_execution_report.py
 
 ### Output
 
-A csv file `create_execution_report.csv` containing the current day's orders in OATS format.
+A csv file `execution_report.csv` containing the current day's executions, one per line.
 ```
+parent_load_time,parent_client_order_id,street_id,street_symbol,street_load_time,street_size,exec_id,exec_size,exec_price,exec_last_market,exec_transaction_time
+2020-09-14T10:04:14.15Z,12345,BCDF2U6-20201001,OEZ0 Comdty,2020-09-14T11:14:37.874416,2.0,execid02394,2,135.0,XEUR,2020-10-01T12:37:33
+2020-09-14T10:04:14.15Z,12346,AABB2U6-20201001,OEZ0 Comdty,2020-09-14T11:14:37.874416,2.0,execid390342,0,0.0,XEUR,2020-10-01T12:33:27
+2020-09-14T10:04:14.15Z,12347,BBCC2U7-20201001,OEZ0 Comdty,2020-09-14T11:14:50.948208,2.0,execid1234,0,0.0,XEUR,2020-10-01T11:14:52.64
 ```
