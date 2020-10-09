@@ -3,6 +3,7 @@ class execution_report_formatter:
         return [
             "parent_load_time",
             "parent_client_order_id",
+            "parent_notes",
             "street_id",
             "street_symbol",
             "street_load_time",
@@ -22,6 +23,7 @@ class execution_report_formatter:
         return [
             parent_order.load_time,
             parent_order.client_order_id,
+            parent_order.notes,
             street_order.id,
             street_order.symbol,
             street_order.load_time,

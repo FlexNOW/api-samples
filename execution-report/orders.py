@@ -16,6 +16,10 @@ class StreetOrder:
 class ParentOrder:
     def __init__(self, order_info):
         try:
+            self.notes = order_info[0].get("notes")
+        except:
+            self.notes = None
+        try:
             self.client_order_id = order_info[0].get("clientOrderId")
         except:
             self.client_order_id = None
