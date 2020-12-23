@@ -8,6 +8,13 @@ def format_from_iso_time(iso_timestamp):
     except:
         return None
 
+def format_from_street_order_time(timestamp):
+    try:
+        dt = datetime.datetime.strptime(timestamp.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f")
+        return dt.strftime('%Y%m%d%H%M%S%f')[:-3]
+    except:
+        return None
+
 def format_oats(street_order, parent_order, config):
     """
     Returns an OATS formatted report for a specified street/parent order.
@@ -39,7 +46,7 @@ def format_oats(street_order, parent_order, config):
         broker_mpid,
         street_order.id,
         street_order.symbol,
-        format_from_iso_time(street_order.load_time),
+        format_from_street_order_time(street_order.load_time),
         int(street_order.size),
         "E",
         "",
