@@ -1,17 +1,20 @@
 import sys
 import datetime
+import pytz
 
 def format_from_iso_time(iso_timestamp):
+    eastern_timezone = pytz.timezone('US/Eastern')
     try:
         dt = datetime.datetime.fromisoformat(iso_timestamp.replace('Z', ''))
-        return dt.strftime('%Y%m%d%H%M%S%f')[:-3]  
+        return dt.astimezone(eastern_timezone).strftime('%Y%m%d%H%M%S%f')[:-3]
     except:
         return None
 
 def format_from_street_order_time(timestamp):
+    eastern_timezone = pytz.timezone('US/Eastern')
     try:
         dt = datetime.datetime.strptime(timestamp.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f")
-        return dt.strftime('%Y%m%d%H%M%S%f')[:-3]
+        return dt.astimezone(eastern_timezone).strftime('%Y%m%d%H%M%S%f')[:-3]
     except:
         return None
 
