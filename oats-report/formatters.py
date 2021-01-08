@@ -2,23 +2,21 @@ import sys
 import datetime
 import pytz
 
-def format_from_iso_time(iso_timestamp):
-    eastern_timezone = pytz.timezone('US/Eastern')
+def format_from_iso_time(iso_timestamp, timezone):
     try:
         dt = datetime.datetime.fromisoformat(iso_timestamp.replace('Z', ''))
-        return dt.astimezone(eastern_timezone).strftime('%Y%m%d%H%M%S%f')[:-3]
+        return dt.astimezone(timezone).strftime('%Y%m%d%H%M%S%f')[:-3]
     except:
         return None
 
-def format_from_street_order_time(timestamp):
-    eastern_timezone = pytz.timezone('US/Eastern')
+def format_from_street_order_time(timestamp, timezone):
     try:
         dt = datetime.datetime.strptime(timestamp.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f")
-        return dt.astimezone(eastern_timezone).strftime('%Y%m%d%H%M%S%f')[:-3]
+        return dt.astimezone(timezone).strftime('%Y%m%d%H%M%S%f')[:-3]
     except:
         return None
 
-def format_oats(street_order, parent_order, config):
+def format_oats(street_order, parent_order, config, timezone=pytz.timezone('UTC')):
     """
     Returns an OATS formatted report for a specified street/parent order.
     
@@ -44,12 +42,12 @@ def format_oats(street_order, parent_order, config):
         "",
         "",
         "BROC",
-        format_from_iso_time(parent_order.load_time),
+        format_from_iso_time(parent_order.load_time, timezone),
         parent_order.compliance_id,
         broker_mpid,
         street_order.id,
         street_order.symbol,
-        format_from_street_order_time(street_order.load_time),
+        format_from_street_order_time(street_order.load_time, timezone),
         int(street_order.size),
         "E",
         "",
