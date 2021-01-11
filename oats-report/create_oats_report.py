@@ -11,7 +11,7 @@ def generate_report():
     api_config = get_api_config()
     api = Api(api_config)
 
-    street_orders = api.get_street_orders("2020-12-22")
+    street_orders = api.get_street_orders()
     eastern_timezone = pytz.timezone('US/Eastern')
 
     for street_order in street_orders:
