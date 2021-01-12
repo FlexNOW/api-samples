@@ -45,7 +45,7 @@ def parse_arguments():
     Parses command line arguments
     """
 
-    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser = argparse.ArgumentParser(description='Process command line arguments.')
     parser.add_argument('--date', type=valid_date, help='the UTC date to run the report for in yyyy-MM-dd format')
     args = parser.parse_args()
 
