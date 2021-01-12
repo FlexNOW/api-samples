@@ -32,6 +32,18 @@ $ export FLEXNOW_API_BASE_URL="https://flexnow-uat.eu.flextrade.com/api/v3" # (d
 $ ./create_oats_report.py
 ```
 
+To run the report for a specific day, provide the `--date` argument with a UTC date:
+
+```console
+$ ./create_oats_report.py --date 2021-01-25
+```
+
+To see all possible command line arguments:
+
+```console
+$ ./create_oats_report.py --help
+```
+
 ### Output
 
 A csv file `oats_report.csv` containing the current day's orders in OATS format.

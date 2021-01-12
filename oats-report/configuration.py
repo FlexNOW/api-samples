@@ -1,6 +1,8 @@
 import configparser
 import os
 import sys
+import datetime
+import argparse
 
 def load_config(filename):
     """Reads in .INI style configuration file."""
@@ -37,3 +39,21 @@ def get_api_config():
         "client_id": client_id,
         "secret_token": secret_token
     }
+
+def parse_arguments():
+    """
+    Parses command line arguments
+    """
+
+    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser.add_argument('--date', type=valid_date, help='the UTC date to run the report for in yyyy-MM-dd format')
+    args = parser.parse_args()
+
+    return args
+
+def valid_date(s):
+    try:
+        return datetime.datetime.strptime(s, "%Y-%m-%d")
+    except ValueError:
+        msg = "Not a valid date: '{0}'.".format(s)
+        raise argparse.ArgumentTypeError(msg)
