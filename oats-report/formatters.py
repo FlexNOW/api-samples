@@ -4,14 +4,14 @@ import pytz
 
 def format_from_iso_time(iso_timestamp, timezone):
     try:
-        dt = datetime.datetime.fromisoformat(iso_timestamp.replace('Z', ''))
+        dt = datetime.datetime.fromisoformat(iso_timestamp.replace('Z', '')).replace(tzinfo=pytz.UTC)
         return dt.astimezone(timezone).strftime('%Y%m%d%H%M%S%f')[:-3]
     except:
         return None
 
 def format_from_street_order_time(timestamp, timezone):
     try:
-        dt = datetime.datetime.strptime(timestamp.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f")
+        dt = datetime.datetime.strptime(timestamp.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f").replace(tzinfo=pytz.UTC)
         return dt.astimezone(timezone).strftime('%Y%m%d%H%M%S%f')[:-3]
     except:
         return None
