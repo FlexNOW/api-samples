@@ -54,7 +54,7 @@ def format_oats(street_order, parent_order, config, timezone=pytz.timezone('UTC'
         "",
         broker_destination_code,
         street_order.price_type,
-        "",
+        street_order.route_price,
         "",
         "",
         "",

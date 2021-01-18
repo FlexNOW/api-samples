@@ -14,8 +14,10 @@ class StreetOrder:
 
         if order_info.get("priceType") == "Market":
             self.price_type = "M"
+            self.route_price = ""
         else:
             self.price_type = "L"
+            self.route_price = order_info.get("limitPrice")
 
 class ParentOrder:
     def __init__(self, order_info):
