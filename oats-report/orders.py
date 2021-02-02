@@ -14,8 +14,10 @@ class StreetOrder:
 
         if order_info.get("priceType") == "Market":
             self.price_type = "M"
+            self.route_price = ""
         else:
             self.price_type = "L"
+            self.route_price = order_info.get("limitPrice")
 
 class ParentOrder:
     def __init__(self, order_info):
@@ -23,6 +25,10 @@ class ParentOrder:
             self.client_order_id = order_info[0].get("clientOrderId")
         except:
             self.client_order_id = None
+        try:
+            self.compliance_id = order_info[0].get("complianceId")
+        except:
+            self.compliance_id = None
         try:
             self.load_time = order_info[0].get("orderLoadTime")
         except:

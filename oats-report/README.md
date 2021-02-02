@@ -4,7 +4,7 @@ This sample project will connect to the FlexNOW API and generate an OATS report.
 
 ### Setup
 
-Python 3 is required (`python3 --version` should display the version).
+Python 3.7 is required (`python3 --version` should display the version).
 
 In the root of the project, install the requirements:
 
@@ -30,6 +30,18 @@ $ export FLEXNOW_API_SECRET_TOKEN="your-secret-token"
 $ export FLEXNOW_API_BASE_URL="https://flexnow-uat.eu.flextrade.com/api/v3" # (default)
 
 $ ./create_oats_report.py
+```
+
+To run the report for a specific day, provide the `--date` argument with a UTC date:
+
+```console
+$ ./create_oats_report.py --date 2021-01-25
+```
+
+To see all possible command line arguments:
+
+```console
+$ ./create_oats_report.py --help
 ```
 
 ### Output

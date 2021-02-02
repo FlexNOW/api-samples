@@ -1,6 +1,22 @@
 import sys
+import datetime
+import pytz
 
-def format_oats(street_order, parent_order, config):
+def format_from_iso_time(iso_timestamp, timezone):
+    try:
+        dt = datetime.datetime.fromisoformat(iso_timestamp.replace('Z', '')).replace(tzinfo=pytz.UTC)
+        return dt.astimezone(timezone).strftime('%Y%m%d%H%M%S%f')[:-3]
+    except:
+        return None
+
+def format_from_street_order_time(timestamp, timezone):
+    try:
+        dt = datetime.datetime.strptime(timestamp.replace('Z', ''), "%Y-%m-%dT%H:%M:%S.%f").replace(tzinfo=pytz.UTC)
+        return dt.astimezone(timezone).strftime('%Y%m%d%H%M%S%f')[:-3]
+    except:
+        return None
+
+def format_oats(street_order, parent_order, config, timezone=pytz.timezone('UTC')):
     """
     Returns an OATS formatted report for a specified street/parent order.
     
@@ -26,19 +42,19 @@ def format_oats(street_order, parent_order, config):
         "",
         "",
         "BROC",
-        parent_order.load_time,
-        parent_order.client_order_id,
+        format_from_iso_time(parent_order.load_time, timezone),
+        parent_order.compliance_id,
         broker_mpid,
         street_order.id,
         street_order.symbol,
-        street_order.load_time,
-        street_order.size,
+        format_from_street_order_time(street_order.load_time, timezone),
+        int(street_order.size),
         "E",
         "",
         "",
         broker_destination_code,
         street_order.price_type,
-        "",
+        street_order.route_price,
         "",
         "",
         "",
